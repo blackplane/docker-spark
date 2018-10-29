@@ -86,14 +86,9 @@ RUN chmod +x /startup.sh && \
 
 ADD ./jupyter_notebook_config.py /home/jupyter/.jupyter/jupyter_notebook_config.py
 
-# Add python libs
-RUN pip install ipywidgets \
-                numpy \
-                scipy \
-                pandas \
-                matplotlib \
-                seaborn \
-                pyarrow==0.11.*
+# Install any needed packages specified in requirements.txt
+ADD ./requirements.txt requirements.txt
+RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 # Set the container working directory to the user home folder
 WORKDIR /home/jupyter

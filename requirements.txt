@@ -1,0 +1,11 @@
+ipywidgets
+numpy
+scipy
+pandas
+matplotlib
+seaborn
+pyarrow==0.11.*
+statsmodels
+tensorflow
+ts-flint
+
