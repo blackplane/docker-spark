@@ -78,6 +78,13 @@ RUN wget --quiet https://github.com/krallin/tini/releases/download/v0.18.0/tini 
     mv tini /usr/local/bin/tini && \
     chmod +x /usr/local/bin/tini
 
+# Install maven
+RUN wget --quiet http://mirror.cc.columbia.edu/pub/software/apache/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.zip && \
+    echo "4d2763e1b73dfcde5c955f586bd754443833f63e20dd9ce4ce4405a2010bfc48324aa3b6bd5b6ac71a614112734b0bc652aa2ac05f492ed28a66de8116c3ef6e  apache-maven-3.5.4-bin.zip" | sha512sum -c - && \
+    unzip -d /tmp apache-maven-3.5.4-bin.zip && \
+    mv /tmp/apache-maven-3.5.4 /usr/local/share
+ENV PATH $PATH:/usr/local/share/apache-maven-3.5.4/bin
+
 # Create a new system user
 RUN useradd -ms /bin/bash jupyter
 ADD ./startup.sh /startup.sh
@@ -85,6 +92,8 @@ RUN chmod +x /startup.sh && \
     chmod 777 $SPARK_LOG_DIR
 
 ADD ./jupyter_notebook_config.py /home/jupyter/.jupyter/jupyter_notebook_config.py
+ADD ./data.csv /home/jupyter/data.csv
+ADD ./conf/master/spark-defaults.conf ${SPARK_HOME}/conf/spark-defaults.conf
 
 # Install any needed packages specified in requirements.txt
 ADD ./requirements.txt requirements.txt
