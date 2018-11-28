@@ -9,4 +9,5 @@ statsmodels
 tensorflow
 ts-flint
 gym
+pyentrp
 
