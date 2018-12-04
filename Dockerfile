@@ -79,7 +79,7 @@ RUN wget --quiet https://github.com/krallin/tini/releases/download/v0.18.0/tini 
     chmod +x /usr/local/bin/tini
 
 # Install maven
-RUN wget --quiet http://mirror.cc.columbia.edu/pub/software/apache/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.zip && \
+RUN wget --quiet http://mirrors.ocf.berkeley.edu/apache/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.zip && \
     echo "4d2763e1b73dfcde5c955f586bd754443833f63e20dd9ce4ce4405a2010bfc48324aa3b6bd5b6ac71a614112734b0bc652aa2ac05f492ed28a66de8116c3ef6e  apache-maven-3.5.4-bin.zip" | sha512sum -c - && \
     unzip -d /tmp apache-maven-3.5.4-bin.zip && \
     mv /tmp/apache-maven-3.5.4 /usr/local/share
