@@ -3,6 +3,7 @@ jupyter_contrib_nbextensions
 numpy
 scipy
 pandas
+sklearn
 matplotlib
 seaborn
 pyarrow==0.11.*
