@@ -8,8 +8,12 @@ matplotlib
 seaborn
 pyarrow==0.11.*
 statsmodels
-tensorflow
 ts-flint
 gym
 pyentrp
 dpkt
+mpld3
+graphviz
+torch
+torchvision
+

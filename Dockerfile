@@ -21,11 +21,22 @@ ENV LC_ALL en_US.UTF-8
 
 RUN apt-get update \
  && apt-get install -y curl wget unzip procps \
-    python3 python3-setuptools \
- && ln -s /usr/bin/python3 /usr/bin/python \
- && easy_install3 pip py4j \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
+
+# Install Anaconda python
+ENV PATH /opt/conda/bin:$PATH
+
+RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates \
+    libglib2.0-0 libxext6 libsm6 libxrender1 \
+    git mercurial subversion
+
+RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-5.3.0-Linux-x86_64.sh -O ~/anaconda.sh && \
+    /bin/bash ~/anaconda.sh -b -p /opt/conda && \
+    rm ~/anaconda.sh && \
+    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+    echo "conda activate base" >> ~/.bashrc
 
 # http://blog.stuart.axelbrooke.com/python-3-on-spark-return-of-the-pythonhashseed
 ENV PYTHONHASHSEED 0
@@ -97,7 +108,12 @@ ADD ./conf/master/spark-defaults.conf ${SPARK_HOME}/conf/spark-defaults.conf
 
 # Install any needed packages specified in requirements.txt
 ADD ./requirements.txt requirements.txt
+ADD ./artifactory-requirememts.txt artifactory-requirememts.txt
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
+RUN pip install -r artifactory-requirememts.txt
+
+# Install tensorflow
+
 
 # Set the container working directory to the user home folder
 WORKDIR /home/jupyter
