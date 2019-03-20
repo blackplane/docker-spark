@@ -2,7 +2,7 @@ version: '3'
 
 services:
     notebook:
-        image: hellospencer/jupyterspark23
+        image: blackplane/jupyterspark23
         ports:
             - ${JUPYTERPORT}:8888
             - 8080:8080

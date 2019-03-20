@@ -62,7 +62,7 @@
 	    </execution>
 	  </executions>
 	  <configuration>
-	    <repository>hellospencer/jupyterspark23</repository>
+	    <repository>blackplane/jupyterspark23</repository>
 	    <tag>latest</tag>
 	    <buildArgs>
 	      <!--><JAR_FILE>${project.build.finalName}.jar</JAR_FILE>-->
