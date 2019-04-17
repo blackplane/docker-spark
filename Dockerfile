@@ -120,6 +120,8 @@ WORKDIR /home/jupyter
 ADD . /home/jupyter
 
 RUN jupyter toree install --spark_home=$SPARK_HOME --interpreters=Scala,PySpark,SparkR,SQL
+RUN jupyter contrib nbextension install --system
+RUN jupyter nbextensions_configurator enable --system
 
 USER jupyter
 
