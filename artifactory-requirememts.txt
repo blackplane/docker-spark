@@ -1,3 +1,4 @@
 --index-url https://artifactory.srv.int.avast.com/artifactory/api/pypi/pypi/simple
-packetparser
+packetstream
+eventprotobuf
 
