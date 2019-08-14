@@ -19,4 +19,5 @@ graphviz
 torch
 torchvision
 protobuf
+gensim
 

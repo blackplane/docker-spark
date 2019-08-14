@@ -12,5 +12,8 @@ services:
             - ${NOTEBOOKDIR}:${NOTEBOOKROOT}
             - ${OTHERNOTEBOOK}:${NOTEBOOKROOT}/other 
             - ${DATADIR}:/home/jupyter/notebooks/Data
+            - /Users/armin.wasicek/Documents/aut-taxes_2017:${NOTEBOOKROOT}/aut-taxes_2017
+            - /Users/armin.wasicek/Documents/aut-taxes_2018:${NOTEBOOKROOT}/aut-taxes_2018
+        
 
 
