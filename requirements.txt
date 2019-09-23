@@ -20,4 +20,7 @@ torch
 torchvision
 protobuf
 gensim
+pandas_explode
+jq
+papermill
 

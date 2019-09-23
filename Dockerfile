@@ -20,7 +20,7 @@ ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
 RUN apt-get update \
- && apt-get install -y curl wget unzip procps \
+ && apt-get install -y build-essential autoconf curl wget unzip procps jq \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
@@ -121,9 +121,13 @@ ADD . /home/jupyter
 
 RUN jupyter toree install --spark_home=$SPARK_HOME --interpreters=Scala,PySpark,SparkR,SQL
 RUN jupyter contrib nbextension install --system
+ADD nbconfig/notebook.json /home/jupyter/.jupyter/
+RUN chown jupyter:jupyter -R /home/jupyter/.jupyter
+RUN jupyter contrib nbextension install --sys-prefix
 RUN jupyter nbextensions_configurator enable --system
 
 USER jupyter
+
 
 ENTRYPOINT ["tini", "-g", "--"]
 CMD /startup.sh
