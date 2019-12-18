@@ -1,3 +1,4 @@
+nbconvert>=5.6.0
 ipywidgets
 jupyter_contrib_nbextensions
 jupyter_nbextensions_configurator
@@ -23,4 +24,7 @@ gensim
 pandas_explode
 jq
 papermill
-
+setuptools>=41.0.0
+forex-python
+influxdb
+#tensorflow
